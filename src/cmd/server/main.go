@@ -4,8 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/go-chi/chi/v5"
-
+	"github.com/moisesPompilio/projeto_x/src/adapters/htpp/routes"
 	"github.com/moisesPompilio/projeto_x/src/pkg/config/server"
 )
 
@@ -16,7 +15,7 @@ func main() {
 		panic(err)
 	}
 
-	r := chi.NewRouter()
+	r := routes.LoadRouter()
 
 	fmt.Println("server rodando na porta:", port)
 	http.ListenAndServe(fmt.Sprintf(":%s", port), r)
