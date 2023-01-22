@@ -6,10 +6,12 @@ import (
 
 	"github.com/moisesPompilio/projeto_x/src/adapters/htpp/routes"
 	"github.com/moisesPompilio/projeto_x/src/pkg/config/server"
+	"github.com/moisesPompilio/projeto_x/src/pkg/migrates"
 )
 
 func main() {
 	port, err := server.Load_Server()
+	migrates.StarMigrate()
 
 	if err != nil {
 		panic(err)

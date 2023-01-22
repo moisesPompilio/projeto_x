@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  database:
+    container_name: projeto_x_PostgresSQL
+    image: postgres
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+    - ${DB_PORT}:5432
+  api_prod:
+    container_name: projeto_x_api_prod
+    build:
+      context: .
+      dockerfile: ./Dockerfile.prod
+    ports:
+    - ${DOCKER_PORT_PROD}:${API_PORT}
+    depends_on:
+      - database
+    environment:
+      DB_HOST: database
+      DB_PORT: 5432

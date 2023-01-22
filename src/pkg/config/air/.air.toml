@@ -3,25 +3,8 @@ tmp_dir = 'tmp'
 testdata_dir = 'testdata'
 
 [build]
-cmd = 'go build -o src/cmd/server/main src/cmd/server/main.go'
-bin = 'src/cmd/server/main'
-full_bin = ''
-args_bin = []
-log = 'build-errors.log'
-include_ext = ['go', 'tpl', 'tmpl', 'html']
-exclude_dir = ['assets', 'tmp', 'vendor', 'testdata']
-include_dir = ['src/cmd/server']
-exclude_file = []
-include_file = ['main.go']
-exclude_regex = ['_test.go']
-exclude_unchanged = false
-follow_symlink = false
-delay = 0
-stop_on_error = false
-send_interrupt = false
-kill_delay = 0
-rerun = false
-rerun_delay = 500
+cmd = 'docker-compose up --build'
+rerun = true
 
 [color]
 main = 'magenta'

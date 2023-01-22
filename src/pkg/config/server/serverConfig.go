@@ -7,13 +7,13 @@ import (
 )
 
 func Load_Server() (string, error) {
-	err := godotenv.Load("environment_variable/server/.env")
+	err := godotenv.Load(".env")
 	if err != nil {
 		return "", err
 	}
-	port := os.Getenv("PORT")
+	port := os.Getenv("API_PORT")
 	if port == "" {
-		port = "3000"
+		port = "3005"
 	}
 	return port, nil
 }

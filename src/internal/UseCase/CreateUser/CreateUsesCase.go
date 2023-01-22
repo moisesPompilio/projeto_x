@@ -12,12 +12,12 @@ import (
 func UserUseCase(create interfaces.CreateUserDTO, ctx context.Context) (domain.User, error) {
 	user, err := domain.NewUser(create)
 	if err != nil {
-		return user, err
+		return domain.User{}, err
 	}
-	conection := userrepositorie.NewUserRepository(db.GetReaderMySQL(), db.GetWriterMySQL())
+	conection := userrepositorie.NewUserRepository(db.GetReaderPostgreSQL(), db.GetWriterPostgreSQL())
 	err = conection.Create(ctx, user)
 	if err != nil {
-		return user, err
+		return domain.User{}, err
 	}
 	return user, nil
 
