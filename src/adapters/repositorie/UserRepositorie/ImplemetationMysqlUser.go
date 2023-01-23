@@ -21,9 +21,8 @@ func NewUserRepository(writer, reader *sqlx.DB) UserRepositorie {
 
 func (repo *ImplemetationUserRepositorieSQL) Create(ctx context.Context, newUser domain.User) error {
 
-	_, err := repo.writer.ExecContext(ctx, `
-		INSERT INTO users (nick_name,name,email,password) VALUES (?, ?, ?, ?)
-	`, newUser.NickName, newUser.Name, newUser.Email, newUser.Password)
+	_, err := repo.writer.ExecContext(ctx, `INSERT INTO users (id, nick_name, name, email, password, created_at, updated_at) 
+												VALUES ($1, $2, $3, $4, $5, $6, $7)`, newUser.ID, newUser.NickName, newUser.Name, newUser.Email, newUser.Password, newUser.CreatedAt, newUser.UpdatedAt)
 
 	if err != nil {
 		fmt.Println(err)

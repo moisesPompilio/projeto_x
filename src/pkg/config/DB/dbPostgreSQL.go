@@ -19,7 +19,7 @@ func LoadDB_PostgreSQL() (string, error) {
 		port = "5432"
 	}
 
-	database := os.Getenv("DB_DATABASE")
+	database := os.Getenv("DB_NAME")
 	if database == "" {
 		database = "db-golang"
 	}
@@ -54,7 +54,7 @@ func GetReaderPostgreSQL() *sqlx.DB {
 		panic(err)
 	}
 
-	reader := sqlx.MustConnect("pg", DB_CONNECTION)
+	reader := sqlx.MustConnect("postgres", DB_CONNECTION)
 
 	return reader
 }
@@ -64,7 +64,47 @@ func GetWriterPostgreSQL() *sqlx.DB {
 	if err != nil {
 		panic(err)
 	}
-	writer := sqlx.MustConnect("pg", DB_CONNECTION)
+	writer := sqlx.MustConnect("postgres", DB_CONNECTION)
 
 	return writer
+}
+
+func Migrates_LoadDB_PostgreSQL() (string, error) {
+	err := godotenv.Load(".env")
+	if err != nil {
+		return "", err
+	}
+	port := os.Getenv("DB_PORT")
+	if port == "" {
+		port = "5432"
+	}
+
+	database := os.Getenv("DB_NAME")
+	if database == "" {
+		database = "db-golang"
+	}
+
+	username := os.Getenv("DB_USERNAME")
+	if username == "" {
+		username = "postgres"
+	}
+
+	password := os.Getenv("DB_PASSWORD")
+	if password == "" {
+		password = "postgres"
+	}
+
+	host := os.Getenv("DB_HOST")
+	if host == "" {
+		host = "localhost"
+	}
+
+	sslmode := os.Getenv("DB_SSLMODE")
+	if sslmode == "" {
+		sslmode = "disable"
+	}
+
+	CONNECTION := fmt.Sprintf("postgres://%s:%s@%s:%s/%s?sslmode=%s", username, password, host, port, database, sslmode)
+	fmt.Println(CONNECTION)
+	return CONNECTION, nil
 }

@@ -6,5 +6,6 @@ RUN GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -o src/cmd/server/main src/cm
 
 FROM scratch
 COPY .env ./
+COPY --from=builder /app/src/pkg/migrates/ /app/src/pkg/migrates/
 COPY --from=builder /app/src/cmd/server/main ./
 ENTRYPOINT [ "/main" ]

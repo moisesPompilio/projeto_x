@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS user (
+CREATE TABLE IF NOT EXISTS users (
 	id uuid,
 	nick_name varchar(255) NOT NULL,
 	name varchar(255) NOT NULL,
