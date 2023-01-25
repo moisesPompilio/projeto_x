@@ -7,7 +7,7 @@ import (
 
 	"github.com/jmoiron/sqlx"
 
-	domain "github.com/moisesPompilio/projeto_x/src/internal/domain/User"
+	"github.com/moisesPompilio/projeto_x/src/internal/domain"
 )
 
 type ImplemetationUserRepositorieSQL struct {
@@ -81,9 +81,8 @@ func (repo *ImplemetationUserRepositorieSQL) Create(ctx context.Context, newUser
 
 // }
 
-func (repo *ImplemetationUserRepositorieSQL) GetUserByEmail(ctx context.Context, email string) ([]domain.User, error) {
-	var user []domain.User
-
+func (repo *ImplemetationUserRepositorieSQL) GetUserByEmail(ctx context.Context, email string) (domain.User, error) {
+	var user domain.User
 	err := repo.reader.GetContext(ctx, &user, `
 		SELECT 
 			id,
@@ -94,13 +93,25 @@ func (repo *ImplemetationUserRepositorieSQL) GetUserByEmail(ctx context.Context,
 			created_at,
 			updated_at
 		FROM users 
-		WHERE email = ?
+		WHERE email = $1
+		LIMIT 1
 	`, email)
 
 	if err != nil {
 		fmt.Println(err)
-		return nil, errors.New("usuário não encontrado")
+		return domain.User{}, errors.New("usuário não encontrado")
 	}
 
 	return user, nil
+}
+
+func (repo *ImplemetationUserRepositorieSQL) DeleteByID(ctx context.Context, ID string) error {
+	_, err := repo.writer.ExecContext(ctx, `DELETE FROM users WHERE id = $1`, ID)
+
+	if err != nil {
+		fmt.Println(err)
+		return errors.New("usuário não cadastrado")
+	}
+
+	return nil
 }
