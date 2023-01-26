@@ -31,14 +31,14 @@ func NewUser(createUserDTO interfaces.CreateUserDTO) (User, error) {
 		CreatedAt: &now,
 		UpdatedAt: &now,
 	}
-	erro := user.valid()
+	erro := user.Valid()
 	if erro != nil {
 		return user, erro
 	}
 	return user, nil
 }
 
-func (user *User) valid() error {
+func (user *User) Valid() error {
 	if user.Email == "" || user.Name == "" || user.Password == "" || user.NickName == "" {
 		return errors.New("user invalid")
 	}
