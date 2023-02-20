@@ -3,13 +3,14 @@ package routes
 import (
 	"github.com/go-chi/chi/v5"
 
-	"github.com/moisesPompilio/projeto_x/src/adapters/htpp/handles"
+	userhandles "github.com/moisesPompilio/projeto_x/src/adapters/htpp/handles/UserHandles"
 )
 
 func UserRoutes() *chi.Mux {
+	handler := userhandles.NewUserhandles()
 	router := chi.NewRouter()
-	router.Post("/", handles.CreateUserHandle)
-	router.Post("/login", handles.LoginHandle)
-	router.Delete("/{id}", handles.DeleteUserHandles)
+	router.Post("/", handler.CreateUserHandle)
+	router.Post("/login", handler.LoginHandle)
+	router.Delete("/{id}", handler.DeleteUserHandles)
 	return router
 }

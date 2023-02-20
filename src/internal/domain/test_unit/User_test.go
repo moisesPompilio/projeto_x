@@ -7,7 +7,6 @@ import (
 )
 
 func TestValid(t *testing.T) {
-	// Test case 1: valid input
 	user := domain.User{
 		NickName: "test_nickname",
 		Name:     "test_name",

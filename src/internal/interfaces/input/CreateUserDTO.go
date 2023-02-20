@@ -1,4 +1,4 @@
-package interfaces
+package input
 
 type CreateUserDTO struct {
 	NickName string `json:"nick_name"`

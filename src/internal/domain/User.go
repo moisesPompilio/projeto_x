@@ -6,7 +6,7 @@ import (
 
 	"github.com/google/uuid"
 
-	"github.com/moisesPompilio/projeto_x/src/internal/interfaces"
+	"github.com/moisesPompilio/projeto_x/src/internal/interfaces/input"
 )
 
 type User struct {
@@ -19,7 +19,7 @@ type User struct {
 	UpdatedAt *time.Time `db:"updated_at"`
 }
 
-func NewUser(createUserDTO interfaces.CreateUserDTO) (User, error) {
+func NewUser(createUserDTO input.CreateUserDTO) (User, error) {
 	now := time.Now()
 	ID := uuid.New()
 	var user User = User{

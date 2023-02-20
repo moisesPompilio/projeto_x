@@ -1,22 +1,21 @@
-package handles
+package userhandles
 
 import (
 	"context"
 	"encoding/json"
 	"net/http"
 
-	usecase "github.com/moisesPompilio/projeto_x/src/internal/UseCase"
-	"github.com/moisesPompilio/projeto_x/src/internal/interfaces"
+	"github.com/moisesPompilio/projeto_x/src/internal/interfaces/input"
 )
 
-func CreateUserHandle(w http.ResponseWriter, r *http.Request) {
-	var createUserDTO interfaces.CreateUserDTO
+func (usecase *Userhandles) CreateUserHandle(w http.ResponseWriter, r *http.Request) {
+	var createUserDTO input.CreateUserDTO
 	if err := json.NewDecoder(r.Body).Decode(&createUserDTO); err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
 
-	err := usecase.GetUserUseCase(createUserDTO, context.Background())
+	err := usecase.Usecase.GetUserUseCase(createUserDTO, context.Background())
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return

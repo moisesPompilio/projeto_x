@@ -1,22 +1,21 @@
-package handles
+package userhandles
 
 import (
 	"context"
 	"encoding/json"
 	"net/http"
 
-	usecase "github.com/moisesPompilio/projeto_x/src/internal/UseCase"
-	"github.com/moisesPompilio/projeto_x/src/internal/interfaces"
+	"github.com/moisesPompilio/projeto_x/src/internal/interfaces/input"
 )
 
-func LoginHandle(w http.ResponseWriter, r *http.Request) {
-	var login interfaces.Login
+func (usecase *Userhandles) LoginHandle(w http.ResponseWriter, r *http.Request) {
+	var login input.Login
 	if err := json.NewDecoder(r.Body).Decode(&login); err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
 		return
 	}
 
-	result, err := usecase.LoginUseCase(login, context.Background())
+	result, err := usecase.Usecase.LoginUseCase(login, context.Background())
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return

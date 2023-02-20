@@ -1,4 +1,4 @@
-package interfaces
+package input
 
 type Login struct {
 	Email    string `json:"email"`
