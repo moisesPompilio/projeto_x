@@ -1,12 +1,12 @@
 package domain
 
 import (
-	"errors"
 	"time"
 
 	"github.com/google/uuid"
 
 	"github.com/moisesPompilio/projeto_x/src/internal/interfaces/input"
+	validation "github.com/moisesPompilio/projeto_x/src/pkg/helps/Validation/ValidateRequiredFieldsStrings"
 )
 
 type User struct {
@@ -39,8 +39,7 @@ func NewUser(createUserDTO input.CreateUserDTO) (User, error) {
 }
 
 func (user *User) Valid() error {
-	if user.Email == "" || user.Name == "" || user.Password == "" || user.NickName == "" {
-		return errors.New("user invalid")
-	}
-	return nil
+	requiredFields := []string{"Email", "Name", "NickName", "Password"}
+	err := validation.ValidateRequiredFields(*user, requiredFields)
+	return err
 }
