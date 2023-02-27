@@ -1,11 +1,11 @@
-package ValidateRequiredFields
+package validation
 
 import (
 	"fmt"
 	"reflect"
 )
 
-func ValidateRequiredFields(obj interface{}, requiredFields []string) error {
+func ValidateRequiredFields_Interfaces_Strings_Pointer(obj interface{}, requiredFields []string) error {
 	if obj == nil {
 		return fmt.Errorf("object is nil")
 	}

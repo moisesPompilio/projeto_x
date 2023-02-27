@@ -6,7 +6,7 @@ import (
 	"github.com/google/uuid"
 
 	"github.com/moisesPompilio/projeto_x/src/internal/interfaces/input"
-	validation "github.com/moisesPompilio/projeto_x/src/pkg/helps/Validation/ValidateRequiredFieldsStrings"
+	validation "github.com/moisesPompilio/projeto_x/src/pkg/helps/Validation"
 )
 
 type User struct {
@@ -40,6 +40,6 @@ func NewUser(createUserDTO input.CreateUserDTO) (User, error) {
 
 func (user *User) Valid() error {
 	requiredFields := []string{"Email", "Name", "NickName", "Password"}
-	err := validation.ValidateRequiredFields(*user, requiredFields)
+	err := validation.ValidateRequiredFields_Interfaces_Strings_Pointer(*user, requiredFields)
 	return err
 }

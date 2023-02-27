@@ -8,7 +8,7 @@ import (
 
 // Container modelo para exportação dos repositórios instanciados
 type Container struct {
-	User userrepositorie.UserRepositorie
+	User userrepositorie.IUserRepositorie
 }
 
 // Options struct de opções para a criação de uma instancia dos serviços

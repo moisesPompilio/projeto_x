@@ -7,7 +7,7 @@ import (
 	"github.com/moisesPompilio/projeto_x/src/internal/interfaces/input"
 )
 
-func (usecase *Userusecase) GetUserUseCase(create input.CreateUserDTO, ctx context.Context) error {
+func (usecase *Userusecase) CreateUserUseCase(create input.CreateUserDTO, ctx context.Context) error {
 	user, err := domain.NewUser(create)
 	if err != nil {
 		return err

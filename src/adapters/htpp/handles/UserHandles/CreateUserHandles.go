@@ -15,7 +15,7 @@ func (usecase *Userhandles) CreateUserHandle(w http.ResponseWriter, r *http.Requ
 		return
 	}
 
-	err := usecase.Usecase.GetUserUseCase(createUserDTO, context.Background())
+	err := usecase.Usecase.CreateUserUseCase(createUserDTO, context.Background())
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return

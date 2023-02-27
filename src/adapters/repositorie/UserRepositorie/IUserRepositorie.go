@@ -6,7 +6,7 @@ import (
 	"github.com/moisesPompilio/projeto_x/src/internal/domain"
 )
 
-type UserRepositorie interface {
+type IUserRepositorie interface {
 	Create(ctx context.Context, newUser domain.User) error
 	GetUserByEmail(ctx context.Context, email string) (domain.User, error)
 	// GetByID(ctx context.Context, ID int64) (*domain.UserWithoutPassword, error)

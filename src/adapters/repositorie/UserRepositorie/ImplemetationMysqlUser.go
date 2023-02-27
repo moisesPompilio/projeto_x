@@ -15,7 +15,7 @@ type ImplemetationUserRepositorieSQL struct {
 	reader *sqlx.DB
 }
 
-func NewUserRepository(writer, reader *sqlx.DB) UserRepositorie {
+func NewUserRepository(writer, reader *sqlx.DB) IUserRepositorie {
 	return &ImplemetationUserRepositorieSQL{writer: writer, reader: reader}
 }
 

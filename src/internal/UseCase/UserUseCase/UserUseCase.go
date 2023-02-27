@@ -6,12 +6,12 @@ import (
 )
 
 type Userusecase struct {
-	UserRepositorie userrepositorie.UserRepositorie
+	UserRepositorie userrepositorie.IUserRepositorie
 }
 
-func NewUserusecase() Userusecase {
+func NewUserusecase() IUserUsecase {
 	repositorie := userrepositorie.NewUserRepository(db.GetReaderPostgreSQL(), db.GetWriterPostgreSQL())
 
 	Userusecase := Userusecase{UserRepositorie: repositorie}
-	return Userusecase
+	return &Userusecase
 }

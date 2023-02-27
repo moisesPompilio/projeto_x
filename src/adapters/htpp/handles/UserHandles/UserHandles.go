@@ -5,10 +5,10 @@ import (
 )
 
 type Userhandles struct {
-	Usecase userusecase.Userusecase
+	Usecase userusecase.IUserUsecase
 }
 
-func NewUserhandles() *Userhandles {
+func NewUserhandles() IUserHandles {
 	usecase := userusecase.NewUserusecase()
 	return &Userhandles{Usecase: usecase}
 }
