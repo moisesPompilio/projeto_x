@@ -13,8 +13,8 @@ func (usecase *Userusecase) LoginUseCase(data input.Login, ctx context.Context) 
 	if err != nil {
 		return output.Token{}, err
 	}
-	if user.Email != data.Email || user.Password != data.Password {
-		return output.Token{}, errors.New("E-mail ou senha inválidos.")
+	if user.Password != data.Password {
+		return output.Token{}, errors.New("Usuario invalido!")
 	}
 
 	return output.Token{Token: "todo bem", RefreshToken: "ai sim"}, nil
