@@ -9,6 +9,7 @@ import (
 	reflect "reflect"
 
 	gomock "github.com/golang/mock/gomock"
+
 	input "github.com/moisesPompilio/projeto_x/src/internal/interfaces/input"
 	output "github.com/moisesPompilio/projeto_x/src/internal/interfaces/output"
 )
