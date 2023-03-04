@@ -9,7 +9,7 @@ import (
 	"github.com/stretchr/testify/assert"
 
 	userusecase "github.com/moisesPompilio/projeto_x/src/internal/UseCase/UserUseCase"
-	mocks "github.com/moisesPompilio/projeto_x/src/pkg/mocks/adapters/repositorie"
+	mocks "github.com/moisesPompilio/projeto_x/src/pkg/mocks/repositorie"
 )
 
 func TestDeleteUsersById_Valid(t *testing.T) {

@@ -10,7 +10,7 @@ import (
 
 	userusecase "github.com/moisesPompilio/projeto_x/src/internal/UseCase/UserUseCase"
 	"github.com/moisesPompilio/projeto_x/src/internal/interfaces/input"
-	mocks "github.com/moisesPompilio/projeto_x/src/pkg/mocks/adapters/repositorie"
+	mocks "github.com/moisesPompilio/projeto_x/src/pkg/mocks/repositorie"
 )
 
 func variblesTest() (createDTOInvalid input.CreateUserDTO, createUserDTO input.CreateUserDTO) {

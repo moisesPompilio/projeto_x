@@ -11,6 +11,6 @@ func UserRoutes() *chi.Mux {
 	router := chi.NewRouter()
 	router.Post("/", handler.CreateUserHandle)
 	router.Post("/login", handler.LoginHandle)
-	router.Delete("/{id}", handler.DeleteUserHandles)
+	router.Delete("/", handler.DeleteUserHandles)
 	return router
 }

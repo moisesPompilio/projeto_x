@@ -2,7 +2,7 @@
 // Source: github.com/moisesPompilio/projeto_x/src/internal/UseCase/UserUseCase (interfaces: IUserUsecase)
 
 // Package usecase_mocks is a generated GoMock package.
-package usecase_mocks
+package mocks
 
 import (
 	context "context"

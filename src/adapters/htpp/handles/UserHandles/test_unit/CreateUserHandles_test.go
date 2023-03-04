@@ -13,58 +13,48 @@ import (
 
 	userhandles "github.com/moisesPompilio/projeto_x/src/adapters/htpp/handles/UserHandles"
 	"github.com/moisesPompilio/projeto_x/src/internal/interfaces/input"
-	"github.com/moisesPompilio/projeto_x/src/internal/interfaces/output"
 	usecase_mocks "github.com/moisesPompilio/projeto_x/src/pkg/mocks/usecase"
 )
 
-func setupTest() (token output.Token, login input.Login) {
-	token = output.Token{Token: "dbkfsd", RefreshToken: "kjbdsdkjf"}
+func setupTestCreateUser() (createUserInvalid string, createUserValid input.CreateUserDTO) {
+	createUserInvalid = "teste"
 
-	login = input.Login{}
-
+	createUserValid = input.CreateUserDTO{}
 	return
 }
 
-func TestLogin_Valid(t *testing.T) {
+func TestCreateUserHandle_Valid(t *testing.T) {
 	mockCtrl := gomock.NewController(t)
 	defer mockCtrl.Finish()
 
-	token, login := setupTest()
-	jsonBody, err := json.Marshal(login)
+	_, createUserDTO := setupTestCreateUser()
+	jsonBody, err := json.Marshal(createUserDTO)
 	if err != nil {
 		t.Fatal(err)
 	}
 	body := strings.NewReader(string(jsonBody))
 
-	r := httptest.NewRequest(http.MethodPost, "/users/login", body)
+	r := httptest.NewRequest(http.MethodPost, "/users", body)
 	w := httptest.NewRecorder()
 
 	MockIUserUsecase := usecase_mocks.NewMockIUserUsecase(mockCtrl)
 	testUserUseCase := &userhandles.Userhandles{Usecase: MockIUserUsecase}
 
-	MockIUserUsecase.EXPECT().LoginUseCase(login, gomock.Any()).Return(token, nil).Times(1)
+	MockIUserUsecase.EXPECT().CreateUserUseCase(createUserDTO, gomock.Any()).Return(nil).Times(1)
 
-	testUserUseCase.LoginHandle(w, r)
+	testUserUseCase.CreateUserHandle(w, r)
 
 	got := w.Result()
-	assert.Equal(t, got.StatusCode, http.StatusOK)
-
-	var respBody output.Token
-	err = json.NewDecoder(got.Body).Decode(&respBody)
-	if err != nil {
-		t.Fatal(err)
-	}
-	assert.Equal(t, respBody, token)
+	assert.Equal(t, got.StatusCode, http.StatusCreated)
 
 }
 
-func TestLogin_Invalid_MissingDataCorretFormat(t *testing.T) {
+func TestCreateUserHandle_Invalid_MissingDataCOrretFormat(t *testing.T) {
 	mockCtrl := gomock.NewController(t)
 	defer mockCtrl.Finish()
 
-	token, _ := setupTest()
-	login := "login"
-	jsonBody, err := json.Marshal(login)
+	createUserDTO, _ := setupTestCreateUser()
+	jsonBody, err := json.Marshal(createUserDTO)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -76,19 +66,19 @@ func TestLogin_Invalid_MissingDataCorretFormat(t *testing.T) {
 	MockIUserUsecase := usecase_mocks.NewMockIUserUsecase(mockCtrl)
 	testUserUseCase := &userhandles.Userhandles{Usecase: MockIUserUsecase}
 
-	MockIUserUsecase.EXPECT().LoginUseCase(gomock.Any(), gomock.Any()).Return(token, nil).Times(0)
+	MockIUserUsecase.EXPECT().CreateUserUseCase(gomock.Any(), gomock.Any()).Return(nil).Times(0)
 
-	testUserUseCase.LoginHandle(w, r)
+	testUserUseCase.CreateUserHandle(w, r)
 
 	got := w.Result()
 	assert.Equal(t, got.StatusCode, http.StatusBadRequest)
 }
 
-func TestLogin_Invalid_ErrorInUserUseCase(t *testing.T) {
+func TestCreateUserHandle_Invalid_ErrorInUserUseCase(t *testing.T) {
 	mockCtrl := gomock.NewController(t)
 	defer mockCtrl.Finish()
 
-	token, login := setupTest()
+	_, login := setupTestCreateUser()
 	jsonBody, err := json.Marshal(login)
 	if err != nil {
 		t.Fatal(err)
@@ -101,9 +91,9 @@ func TestLogin_Invalid_ErrorInUserUseCase(t *testing.T) {
 	MockIUserUsecase := usecase_mocks.NewMockIUserUsecase(mockCtrl)
 	testUserUseCase := &userhandles.Userhandles{Usecase: MockIUserUsecase}
 
-	MockIUserUsecase.EXPECT().LoginUseCase(login, gomock.Any()).Return(token, errors.New("falha ao fazer login")).Times(1)
+	MockIUserUsecase.EXPECT().CreateUserUseCase(login, gomock.Any()).Return(errors.New("falha ao fazer login")).Times(1)
 
-	testUserUseCase.LoginHandle(w, r)
+	testUserUseCase.CreateUserHandle(w, r)
 
 	got := w.Result()
 	assert.Equal(t, got.StatusCode, http.StatusInternalServerError)

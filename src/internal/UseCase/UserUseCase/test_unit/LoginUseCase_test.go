@@ -13,7 +13,7 @@ import (
 	userusecase "github.com/moisesPompilio/projeto_x/src/internal/UseCase/UserUseCase"
 	"github.com/moisesPompilio/projeto_x/src/internal/domain"
 	"github.com/moisesPompilio/projeto_x/src/internal/interfaces/input"
-	mocks "github.com/moisesPompilio/projeto_x/src/pkg/mocks/adapters/repositorie"
+	mocks "github.com/moisesPompilio/projeto_x/src/pkg/mocks/repositorie"
 )
 
 func variblesTest() (user domain.User, userErr domain.User, login input.Login) {

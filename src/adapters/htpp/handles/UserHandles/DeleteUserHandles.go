@@ -4,12 +4,10 @@ import (
 	"context"
 	"encoding/json"
 	"net/http"
-
-	"github.com/go-chi/chi/v5"
 )
 
 func (usecase *Userhandles) DeleteUserHandles(w http.ResponseWriter, r *http.Request) {
-	userID := chi.URLParam(r, "id")
+	userID := r.URL.Query().Get("id")
 	if userID == "" {
 		http.Error(w, "Missing user ID", http.StatusBadRequest)
 		return
