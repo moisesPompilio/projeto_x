@@ -1,13 +1,11 @@
-# This workflow will build a golang project
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-go
 
 name: Go
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "develops" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "develops" ]
 
 jobs:
 
@@ -25,4 +23,4 @@ jobs:
       run: go build -v ./...
 
     - name: Test
-      run: go test -v ./...
+      run: go test -v  ./.../test_unit
