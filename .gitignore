@@ -1,0 +1,40 @@
+# Binaries for programs and plugins
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Test binary, built with `go test -c`
+*.test
+
+# Output of the go coverage tool, specifically when used with LiteIDE (useful to exclude from workspaces)
+*.out
+
+# Directories
+bin/
+pkg/
+vendor/
+
+# IDEs and editors
+.idea/
+.vscode/
+
+# Go specific
+*.log
+*.trace
+.godoc
+*.prof
+.cov
+.coverprof
+.pprof
+.testacc.log
+.testgen
+test_output/
+*.testoutput
+
+# Dependency directories (comment out if using dep)
+/Godeps/
+/vendor/
+
+#env
+.env
