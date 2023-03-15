@@ -10,7 +10,7 @@ import (
 
 	userusecase "github.com/moisesPompilio/projeto_x/src/internal/UseCase/UserUseCase"
 	"github.com/moisesPompilio/projeto_x/src/internal/interfaces/input"
-	mocks "github.com/moisesPompilio/projeto_x/src/pkg/mocks/repositorie"
+	mocks_repo "github.com/moisesPompilio/projeto_x/src/pkg/mocks/repositorie"
 )
 
 func variblesTest() (createDTOInvalid input.CreateUserDTO, createUserDTO input.CreateUserDTO) {
@@ -35,7 +35,7 @@ func TestCreateUserUseCase_Valid(t *testing.T) {
 	mockCtrl := gomock.NewController(t)
 	defer mockCtrl.Finish()
 
-	mockUserRepositorie := mocks.NewMockIUserRepositorie(mockCtrl)
+	mockUserRepositorie := mocks_repo.NewMockIUserRepositorie(mockCtrl)
 	testUserUseCase := &userusecase.Userusecase{UserRepositorie: mockUserRepositorie}
 
 	context := context.Background()
@@ -53,7 +53,7 @@ func TestLogin_InvalidUser(t *testing.T) {
 	mockCtrl := gomock.NewController(t)
 	defer mockCtrl.Finish()
 
-	mockUserRepositorie := mocks.NewMockIUserRepositorie(mockCtrl)
+	mockUserRepositorie := mocks_repo.NewMockIUserRepositorie(mockCtrl)
 	testUserUseCase := &userusecase.Userusecase{UserRepositorie: mockUserRepositorie}
 
 	context := context.Background()
@@ -70,7 +70,7 @@ func TestLogin_FailedInsertUser(t *testing.T) {
 	mockCtrl := gomock.NewController(t)
 	defer mockCtrl.Finish()
 
-	mockUserRepositorie := mocks.NewMockIUserRepositorie(mockCtrl)
+	mockUserRepositorie := mocks_repo.NewMockIUserRepositorie(mockCtrl)
 	testUserUseCase := &userusecase.Userusecase{UserRepositorie: mockUserRepositorie}
 
 	context := context.Background()
