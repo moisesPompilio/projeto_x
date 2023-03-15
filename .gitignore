@@ -27,10 +27,7 @@ vendor/
 .cov
 .coverprof
 .pprof
-.testacc.log
-.testgen
-test_output/
-*.testoutput
+
 
 # Dependency directories (comment out if using dep)
 /Godeps/
