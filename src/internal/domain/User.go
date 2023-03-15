@@ -14,6 +14,7 @@ type User struct {
 	NickName  string     `db:"nick_name"`
 	Name      string     `db:"name"`
 	Email     string     `db:"email"`
+	Roles     string     `db:"roles"`
 	Password  string     `db:"password"`
 	CreatedAt *time.Time `db:"created_at"`
 	UpdatedAt *time.Time `db:"updated_at"`
@@ -27,6 +28,7 @@ func NewUser(createUserDTO input.CreateUserDTO) (User, error) {
 		NickName:  createUserDTO.NickName,
 		Name:      createUserDTO.Name,
 		Email:     createUserDTO.Email,
+		Roles:     createUserDTO.Roles,
 		Password:  createUserDTO.Password,
 		CreatedAt: &now,
 		UpdatedAt: &now,

@@ -5,12 +5,12 @@ import (
 	"errors"
 )
 
-func (usecase *Userusecase) DeleteUsersById(data string, ctx context.Context) error {
-	if data == "" {
+func (usecase *Userusecase) DeleteUsersById(id string, ctx context.Context) error {
+	if id == "" {
 		return errors.New("id invalid")
 	}
 
-	err := usecase.UserRepositorie.DeleteByID(ctx, data)
+	err := usecase.UserRepositorie.DeleteByID(ctx, id)
 	if err != nil {
 		return err
 	}
