@@ -2,6 +2,7 @@ FROM golang:1.19 as builder
 WORKDIR /app
 COPY . ./
 RUN go mod download
+RUN go test -v  ./.../test_unit
 RUN GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -o src/cmd/server/main src/cmd/server/main.go
 
 FROM scratch
