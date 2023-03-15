@@ -2,7 +2,7 @@
 // Source: github.com/moisesPompilio/projeto_x/src/internal/UseCase/UserUseCase (interfaces: IUserUsecase)
 
 // Package _mocks is a generated GoMock package.
-package _mocks
+package mocks
 
 import (
 	context "context"
@@ -10,6 +10,7 @@ import (
 
 	gomock "github.com/golang/mock/gomock"
 	uuid "github.com/google/uuid"
+
 	input "github.com/moisesPompilio/projeto_x/src/internal/interfaces/input"
 	output "github.com/moisesPompilio/projeto_x/src/internal/interfaces/output"
 )
