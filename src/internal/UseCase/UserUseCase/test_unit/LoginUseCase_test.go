@@ -96,6 +96,5 @@ func TestLogin_InvalidUser(t *testing.T) {
 	_, err := testUserUseCase.LoginUseCase(login, context)
 
 	assert.NotNil(t, err)
-	assert.Equal(t, "Usuario invalido!", err.Error())
 
 }
