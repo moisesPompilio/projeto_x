@@ -14,8 +14,9 @@ func (usecase *Userusecase) LoginUseCase(data input.Login, ctx context.Context) 
 		return output.Token{}, err
 	}
 	if user.Password != data.Password {
-		return output.Token{}, errors.New("Usuario invalido!")
+		return output.Token{}, errors.New("usuario invalido")
 	}
 
-	return output.Token{Token: "todo bem", RefreshToken: "ai sim"}, nil
+	return output.Token{Token: "ok", RefreshToken: "ai sim"}, nil
+
 }
