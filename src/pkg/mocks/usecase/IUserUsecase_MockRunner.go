@@ -67,7 +67,7 @@ func (mr *MockIUserUsecaseMockRecorder) DeleteUsersById(arg0, arg1 interface{}) 
 }
 
 // GetByID mocks base method.
-func (m *MockIUserUsecase) GetByID(arg0 context.Context, arg1 uuid.UUID) (*output.UserOutpDTO, error) {
+func (m *MockIUserUsecase) GetUserByIdUseCase(arg0 context.Context, arg1 uuid.UUID) (*output.UserOutpDTO, error) {
 	m.ctrl.T.Helper()
 	ret := m.ctrl.Call(m, "GetByID", arg0, arg1)
 	ret0, _ := ret[0].(*output.UserOutpDTO)
@@ -76,9 +76,9 @@ func (m *MockIUserUsecase) GetByID(arg0 context.Context, arg1 uuid.UUID) (*outpu
 }
 
 // GetByID indicates an expected call of GetByID.
-func (mr *MockIUserUsecaseMockRecorder) GetByID(arg0, arg1 interface{}) *gomock.Call {
+func (mr *MockIUserUsecaseMockRecorder) GetUserByIdUseCase(arg0, arg1 interface{}) *gomock.Call {
 	mr.mock.ctrl.T.Helper()
-	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetByID", reflect.TypeOf((*MockIUserUsecase)(nil).GetByID), arg0, arg1)
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "GetByID", reflect.TypeOf((*MockIUserUsecase)(nil).GetUserByIdUseCase), arg0, arg1)
 }
 
 // LoginUseCase mocks base method.
