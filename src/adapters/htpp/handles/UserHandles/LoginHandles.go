@@ -8,7 +8,18 @@ import (
 	"github.com/moisesPompilio/projeto_x/src/internal/interfaces/input"
 )
 
+const (
+	contentTypeHeader = "Content-Type"
+	jsonContentType   = "application/json"
+	invalidMethodErr  = "Invalid method"
+)
+
 func (usecase *Userhandles) LoginHandle(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPost {
+		http.Error(w, invalidMethodErr, http.StatusMethodNotAllowed)
+		return
+	}
+
 	var login input.Login
 	if err := json.NewDecoder(r.Body).Decode(&login); err != nil {
 		http.Error(w, err.Error(), http.StatusBadRequest)
@@ -21,7 +32,7 @@ func (usecase *Userhandles) LoginHandle(w http.ResponseWriter, r *http.Request) 
 		return
 	}
 
-	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set(contentTypeHeader, jsonContentType)
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(result)
 }

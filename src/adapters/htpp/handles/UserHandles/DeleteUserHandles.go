@@ -2,7 +2,6 @@ package userhandles
 
 import (
 	"context"
-	"encoding/json"
 	"net/http"
 )
 
@@ -20,5 +19,4 @@ func (usecase *Userhandles) DeleteUserHandles(w http.ResponseWriter, r *http.Req
 
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w)
 }
